@@ -1,9 +1,10 @@
 import multer from "multer";
 import {v4 as uuid} from "uuid"
+import path from "path";
 
 const storage= multer.diskStorage({
     destination(req,file,callback){
-        callback(null,'uploads')
+        callback(null,path.join(__dirname,'uploads'))
     },
     filename(req,file,callback){
         const id=uuid();

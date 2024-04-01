@@ -14,7 +14,7 @@ export const newProduct=TryCatch(async(req,res,next)=>{
     // }
 
     const product = await Product.create({
-        name,title,description,category,createdBy:req.user._id,stock,price,image:photo.path
+        name,title,description,category,createdBy:req.user._id,stock,price,image:photo?.path
     })
 
     res.status(201).json({
