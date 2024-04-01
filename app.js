@@ -20,7 +20,7 @@ app.use(cors());
 app.use("/api/v1/users",userRoute);
 app.use("/api/v1/products",productRoute);
 app.use("/api/v1/orders",orderRoute);
-app.use('/uploads',express.static('uploads'))
+app.use("/uploads",express.static('uploads'))
 
 app.use(errormiddleware);
 
