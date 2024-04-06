@@ -3,20 +3,27 @@ import User from "../model/userModel.js";
 import TryCatch from "../utils/TryCatch.js";
 import Errorhandler from "../middlewares/Errorhandler.js";
 import fs from "fs";
+import Cloudinary from "cloudinary";
+import getdaturi from "../utils/datauri.js";
 
 
 export const newProduct=TryCatch(async(req,res,next)=>{
 
     const {name,title,description,category,stock,price}=req.body;
     const photo=req.file;
+    console.log(photo)
+    const fileUri=getdaturi(photo);
+    // console.log(fileUri.content);
+    const myimg=await Cloudinary.v2.uploader.upload(fileUri.content);
     // if(!name || !title || !description || !category || stock || !price || !photo){
     //     return next(new Errorhandler("All fields required",400));
     // }
 
     const product = await Product.create({
-        name,title,description,category,createdBy:req.user._id,stock,price,image:photo?.path
+        name,title,description,category,createdBy:req.user._id,stock,price,image:myimg.secure_url
     })
 
+    // console.log(photo)
     res.status(201).json({
         success:true,
         message:"Product Created",
