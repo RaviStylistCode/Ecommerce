@@ -8,9 +8,9 @@ dotenv.config({
 });
 
 cloudinary.config({
-    cloud_name:process.env.cloud_name,
-    api_key:process.env.cloud_api,
-    api_secret:process.env.cloud_secret
+    cloud_name:process.env.CLOUDINARY_CLOUD_NAME,
+    api_key:process.env.CLOUDINARY_API_KEY,
+    api_secret:process.env.CLOUDINARY_API_SECRET
 });
 
 connectDB();
